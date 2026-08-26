@@ -9,7 +9,7 @@ Application of Supplementary Table S3 (compatibility decision rules) of the manu
 | A | `wang2021-digital-twin` | Drywall installation, laboratory mock-up | Integrated (task + robot + work-object + relations) | on-request |
 | B | `wang2023-gaze-aware` | Construction commands, laboratory mock-up | Human-deep (gaze + hand gestures, no robot) | open |
 | C | `pan2023-task-primitives` | Scaffolding videos | Task-deep (four-level hierarchy, no robot) | metadata-only |
-| D | `rossini2026-concert` | Drilling / sanding / plastering, on-site | Robot-deep (module descriptions + meshes) | open |
+| D | `rossini2026-concert` | Drilling / sanding / plastering, on-site | Robot-deep (platform, tasks, environment, and human role) | open |
 
 ## Verdicts
 

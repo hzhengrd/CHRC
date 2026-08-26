@@ -3,28 +3,73 @@
 @prefix ex:   <https://hzhengrd.github.io/CHRC/examples/rossini2026-concert/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 
-# A robot-focused resource: the episode records a modular construction robot
-# performing construction tasks, without a documented human stream.
+# A robot-rich resource: module descriptions, meshes, and task demonstrations of
+# a modular construction robot, with a human operator in a supporting role.
+# Relations are typed here by the framework; the source resource does not type
+# them explicitly.
 
 ex:episode-1 a chrc:CollaborativeEpisode, prov:Entity ;
     chrc:episodeId "rossini2026-EP01" ;
-    chrc:focalTask ex:drilling-task ;
+    chrc:focalTask ex:sanding-task ;
     chrc:environmentConfig ex:construction-site .
+
+# Participants
+ex:operator-1 a chrc:Human, prov:Agent ;
+    chrc:role "operator (leads and commands the robot)" ;
+    prov:wasAssociatedWith ex:episode-1 .
 
 ex:robot-1 a chrc:Robot, prov:Agent ;
     chrc:embodiment "modular reconfigurable manipulator" ;
-    chrc:role "notReported" ;
     prov:wasAssociatedWith ex:episode-1 .
 
-ex:drilling-task a chrc:Task, prov:Entity ;
-    chrc:specification ex:drilling-goal .
+# Task and work object
+ex:sanding-task a chrc:Task, prov:Entity ;
+    chrc:specification ex:sanding-setpoint ;
+    chrc:workObject ex:wall-1 .
 
-ex:construction-site a chrc:Environment, prov:Entity .
+ex:wall-1 a chrc:WorkObject, prov:Entity .
 
-ex:module-mesh-1 a chrc:Observation ;
+# Environment
+ex:construction-site a chrc:Environment, prov:Entity ;
+    chrc:geometricStructure ex:pointcloud-1 ;
+    chrc:semanticContent ex:obstacle-labels .
+
+# Typed relations (typed here by the framework)
+ex:command-1 a chrc:Commands, prov:Activity ;
+    chrc:from ex:operator-1 ;
+    chrc:to ex:robot-1 .
+
+ex:sand-1 a chrc:ActsOn, prov:Activity ;
+    chrc:from ex:robot-1 ;
+    chrc:to ex:wall-1 .
+
+# Observations
+ex:module-description-1 a chrc:Observation ;
     chrc:of ex:robot-1 ;
-    chrc:representationForm "mesh; module description (JSON)" ;
-    chrc:unitOfObservation "module" ;
-    chrc:encodingMethod "extracted from project documents" ;
+    chrc:representationForm "module description (JSON); mesh (STL)" ;
     chrc:spatialReference "notReported" ;
+    chrc:temporalReference "notReported" .
+
+ex:contact-force-1 a chrc:Observation ;
+    chrc:of ex:robot-1 ;
+    chrc:modality "force/torque (estimated from joint torques)" ;
+    chrc:spatialReference "robot base frame" ;
+    chrc:temporalReference "notReported" .
+
+ex:trajectory-1 a chrc:Observation ;
+    chrc:of ex:robot-1 ;
+    chrc:modality "planned trajectory" ;
+    chrc:spatialReference "robot base frame" ;
+    chrc:temporalReference "notReported" .
+
+ex:wall-state-1 a chrc:Observation ;
+    chrc:of ex:wall-1 ;
+    chrc:modality "image (defects vs sanded area)" ;
+    chrc:spatialReference "notReported" ;
+    chrc:temporalReference "notReported" .
+
+ex:pointcloud-1 a chrc:Observation ;
+    chrc:of ex:construction-site ;
+    chrc:modality "LIDAR point cloud" ;
+    chrc:spatialReference "world/site frame" ;
     chrc:temporalReference "notReported" .
