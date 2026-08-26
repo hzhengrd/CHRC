@@ -26,17 +26,17 @@
       "internalState": "captured"
     },
     "robot": {
-      "capabilityAndConfiguration": "notReported",
+      "capabilityAndConfiguration": "captured",
       "physicalState": "notReported",
       "action": "notReported",
       "intent": "notReported"
     },
     "task": {
-      "specification": "captured",
+      "specification": "notReported",
       "structure": "notReported",
-      "allocation": "notReported",
+      "allocation": "captured",
       "workObjectState": "notReported",
-      "execution": "notReported"
+      "execution": "captured"
     },
     "environment": {
       "geometricStructure": "notReported",

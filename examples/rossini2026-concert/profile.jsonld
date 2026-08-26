@@ -16,31 +16,31 @@
   ],
   "recordBasis": "episode",
   "intendedPurpose": "A modular reconfigurable robot platform for construction tasks; the resource documents the robot's module descriptions, meshes, and task demonstrations.",
-  "limitations": "The resource is robot-centered: human participant streams and interaction quality are not documented.",
+  "limitations": "Human bodily state (pose/motion) and internal state (workload/trust) are not documented, though human role, action, and command intent are represented.",
   "hrteCoverage": {
     "human": {
-      "capabilityAndRole": "notReported",
+      "capabilityAndRole": "captured",
       "physicalState": "notReported",
-      "action": "notReported",
-      "intent": "notReported",
+      "action": "captured",
+      "intent": "captured",
       "internalState": "notReported"
     },
     "robot": {
       "capabilityAndConfiguration": "captured",
-      "physicalState": "notReported",
+      "physicalState": "captured",
       "action": "captured",
-      "intent": "notReported"
+      "intent": "captured"
     },
     "task": {
       "specification": "captured",
-      "structure": "notReported",
-      "allocation": "notReported",
-      "workObjectState": "notReported",
-      "execution": "notReported"
+      "structure": "captured",
+      "allocation": "captured",
+      "workObjectState": "captured",
+      "execution": "captured"
     },
     "environment": {
-      "geometricStructure": "notReported",
-      "semanticContent": "notReported",
+      "geometricStructure": "captured",
+      "semanticContent": "captured",
       "operatingConditions": "notReported"
     }
   },
