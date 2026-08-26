@@ -26,8 +26,9 @@ chrc:ObservationShape a sh:NodeShape ;
   sh:property [ sh:path chrc:spatialReference ; sh:minCount 1 ] ;
   sh:property [ sh:path chrc:temporalReference ; sh:minCount 1 ] .
 
-# A relation must name both its source and target.
+# Any relation (including user-defined subclasses of chrc:Relation) must name
+# both its source and target.
 chrc:RelationShape a sh:NodeShape ;
-  sh:targetClass chrc:Commands, chrc:ActsOn, chrc:ConstrainedBy, chrc:CoordinatesWith, chrc:CoManipulates, chrc:Fastens, chrc:Holds, chrc:AlignedTo ;
+  sh:targetClass chrc:Relation ;
   sh:property [ sh:path chrc:from ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
   sh:property [ sh:path chrc:to ; sh:minCount 1 ; sh:nodeKind sh:IRI ] .

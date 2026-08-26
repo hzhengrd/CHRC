@@ -29,15 +29,23 @@ chrc:ResourceProfile a rdfs:Class, owl:Class ;
   rdfs:label "Resource profile" ;
   rdfs:comment "A machine-readable description of a CHRC data resource: identity, H/R/T/E coverage, scale, instantiation, provenance, and access." .
 
-# Relation types (reified, PROV-style activities)
-chrc:Commands       a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity .
-chrc:ActsOn         a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity .
-chrc:ConstrainedBy  a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity .
-chrc:CoordinatesWith a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity .
-chrc:CoManipulates  a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity .
-chrc:Fastens        a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity .
-chrc:Holds          a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity .
-chrc:AlignedTo      a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity .
+# Relation types (reified, PROV-style activities).
+# The relation vocabulary is open, not exhaustive: chrc:Relation is the extension
+# point, and the subclasses below are illustrative examples. Users may define
+# additional relation types as subclasses of chrc:Relation when none of the
+# provided examples fits.
+chrc:Relation a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity ;
+  rdfs:label "Relation" ;
+  rdfs:comment "A typed, time-bounded relation between referents in a collaborative episode. The relation vocabulary is open; the subclasses below are illustrative examples." .
+
+chrc:Commands        a rdfs:Class, owl:Class ; rdfs:subClassOf chrc:Relation .
+chrc:ActsOn          a rdfs:Class, owl:Class ; rdfs:subClassOf chrc:Relation .
+chrc:ConstrainedBy   a rdfs:Class, owl:Class ; rdfs:subClassOf chrc:Relation .
+chrc:CoordinatesWith a rdfs:Class, owl:Class ; rdfs:subClassOf chrc:Relation .
+chrc:CoManipulates   a rdfs:Class, owl:Class ; rdfs:subClassOf chrc:Relation .
+chrc:Fastens         a rdfs:Class, owl:Class ; rdfs:subClassOf chrc:Relation .
+chrc:Holds           a rdfs:Class, owl:Class ; rdfs:subClassOf chrc:Relation .
+chrc:AlignedTo       a rdfs:Class, owl:Class ; rdfs:subClassOf chrc:Relation .
 
 # ---- Episode-level properties ---------------------------------------------
 
