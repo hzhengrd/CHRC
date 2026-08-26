@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CHRC Data Infrastructure</title>
+<style>
+  :root {
+    --ink: #1b1b1b;
+    --muted: #6e6e6e;
+    --line: #e5e7eb;
+    --bg: #fafafa;
+    --card: #ffffff;
+    --accent: #2c88ba;
+    --human: #b0247c;
+    --robot: #2c88ba;
+    --task: #cf7a00;
+    --env: #206e4a;
+    --open: #206e4a;
+    --request: #cf7a00;
+    --meta: #6e6e6e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  header {
+    padding: 3.2rem 1.5rem 2.4rem;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+  }
+  header h1 {
+    margin: 0 0 .5rem;
+    font-size: 1.7rem;
+    font-weight: 650;
+    letter-spacing: -.02em;
+  }
+  header .sub {
+    margin: 0 auto;
+    max-width: 46rem;
+    color: var(--muted);
+    font-size: .95rem;
+  }
+  header .links { margin-top: 1.1rem; font-size: .9rem; }
+  header .links a {
+    color: var(--accent);
+    text-decoration: none;
+    margin: 0 .55rem;
+    white-space: nowrap;
+  }
+  header .links a:hover { text-decoration: underline; }
+
+  main { max-width: 62rem; margin: 0 auto; padding: 2rem 1.5rem 4.5rem; }
+
+  section { margin-bottom: 3rem; }
+  section > h2 {
+    font-size: 1.2rem;
+    font-weight: 650;
+    margin: 0 0 .9rem;
+    padding-bottom: .45rem;
+    border-bottom: 1px solid var(--line);
+  }
+  section > h2 .count { color: var(--muted); font-weight: 450; font-size: .9rem; }
+  p.hint { color: var(--muted); font-size: .9rem; }
+
+  /* --- worked examples --- */
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 640px) { .cards { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: box-shadow .15s ease, transform .15s ease;
+  }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.07); transform: translateY(-1px); }
+  .card .head {
+    padding: .9rem 1rem;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+  }
+  .card .head .row1 { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; }
+  .card .head .name { font-weight: 600; font-size: .98rem; }
+  .card .head .meta { font-size: .8rem; color: var(--muted); }
+  .badges { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .2rem; }
+  .badge {
+    font-size: .72rem;
+    font-weight: 600;
+    padding: .1rem .55rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+  }
+  .badge.open { color: var(--open); border-color: #bfdccb; background: #eef7f1; }
+  .badge.request { color: var(--request); border-color: #f0dcb6; background: #fbf4e6; }
+  .badge.meta { color: var(--meta); border-color: var(--line); background: #f4f4f5; }
+
+  .coverage { border-top: 1px solid var(--line); padding: .6rem 1rem .9rem; display: none; }
+  .card.open .coverage { display: block; }
+  .coverage .r { margin-bottom: .6rem; }
+  .coverage .r:last-child { margin-bottom: 0; }
+  .coverage .r .rname {
+    font-size: .72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: .25rem;
+  }
+  .coverage .r .dots { display: flex; flex-wrap: wrap; gap: .3rem; }
+  .cell {
+    display: inline-flex;
+    align-items: center;
+    gap: .25rem;
+    font-size: .72rem;
+    padding: .08rem .4rem;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background: #fafafa;
+  }
+  .cell .dot { width: .5rem; height: .5rem; border-radius: 50%; background: #d4d4d8; }
+  .cell.captured { border-color: #d1d5db; background: #fff; }
+  .cell.captured .dot { background: currentColor; }
+  .cell.notCaptured { opacity: .65; }
+  .cell.notCaptured .dot { background: #fff; border: 1.5px solid #9ca3af; }
+
+  .legend { margin-top: 1rem; font-size: .78rem; color: var(--muted); display: flex; gap: 1rem; flex-wrap: wrap; }
+  .legend span { display: inline-flex; align-items: center; gap: .3rem; }
+  .legend .dot { width: .55rem; height: .55rem; border-radius: 50%; display: inline-block; }
+
+  /* --- vocab & schemas --- */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+  .box {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1rem 1.1rem;
+  }
+  .box h3 { margin: 0 0 .6rem; font-size: .95rem; font-weight: 650; }
+  .box ul { margin: 0; padding-left: 1.1rem; }
+  .box li { font-size: .88rem; margin: .18rem 0; }
+  .box code, code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .85em; background: #f4f4f5; padding: .08rem .3rem; border-radius: 4px; }
+  .box a { color: var(--accent); text-decoration: none; }
+  .box a:hover { text-decoration: underline; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 1.6rem 1.5rem 2.5rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: .84rem;
+    background: #fff;
+  }
+  footer code { background: #f4f4f5; padding: .05rem .3rem; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>CHRC Data Infrastructure</h1>
+  <p class="sub">Public, machine-readable assets accompanying the manuscript
+  <em>A Data-Centric Perspective on Construction Human–Robot Collaboration: Taxonomy, Landscape, and Infrastructure</em>.</p>
+  <div class="links">
+    <a href="vocab/chrc.ttl">Vocabulary (Turtle)</a>
+    <a href="schemas/resource-profile.schema.json">JSON Schema</a>
+    <a href="schemas/episode-graph.shacl.ttl">SHACL shapes</a>
+    <a href="review/resources-coding.csv">Coding table</a>
+    <a href="https://github.com/hzhengrd/CHRC">GitHub repository</a>
+  </div>
+</header>
+
+<main>
+
+  <section id="examples">
+    <h2>Worked examples <span class="count">— four published resources profiled with the framework</span></h2>
+    <p class="hint">Each card shows the resource's access tier and its documented H/R/T/E coverage (click to expand). Green = captured, grey = not reported, outlined = not captured.</p>
+    <div class="cards" id="cards"></div>
+    <div class="legend">
+      <span><span class="dot" style="background:#b0247c"></span> Human</span>
+      <span><span class="dot" style="background:#2c88ba"></span> Robot</span>
+      <span><span class="dot" style="background:#cf7a00"></span> Task</span>
+      <span><span class="dot" style="background:#206e4a"></span> Environment</span>
+    </div>
+  </section>
+
+  <section id="vocab">
+    <h2>Vocabulary</h2>
+    <div class="grid">
+      <div class="box">
+        <h3>Classes</h3>
+        <ul>
+          <li><code>CollaborativeEpisode</code>, <code>Human</code>, <code>Robot</code>, <code>Task</code>, <code>WorkObject</code>, <code>Environment</code>, <code>Observation</code>, <code>ResourceProfile</code></li>
+          <li><code>Relation</code> and illustrative subclasses (<code>Commands</code>, <code>ActsOn</code>, <code>ConstrainedBy</code>, …) — open for extension</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Coverage &amp; instantiation</h3>
+        <ul>
+          <li><strong>17</strong> H/R/T/E information categories (<code>capabilityAndRole</code>, <code>action</code>, <code>intent</code>, <code>workObjectState</code>, …)</li>
+          <li><strong>9</strong> data-instantiation properties (<code>modality</code>, <code>representationForm</code>, <code>spatialReference</code>, <code>temporalReference</code>, …)</li>
+        </ul>
+      </div>
+    </div>
+    <p class="hint" style="margin-top:.6rem">Full definitions: <a href="vocab/chrc.ttl"><code>vocab/chrc.ttl</code></a> · JSON-LD context: <a href="vocab/context.jsonld"><code>vocab/context.jsonld</code></a></p>
+  </section>
+
+  <section id="schemas">
+    <h2>Schemas</h2>
+    <div class="grid">
+      <div class="box">
+        <h3>Resource profile</h3>
+        <ul>
+          <li><a href="schemas/resource-profile.schema.json"><code>resource-profile.schema.json</code></a> — JSON Schema for the minimum profile (identity, H/R/T/E coverage, scale, access)</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Episode graph</h3>
+        <ul>
+          <li><a href="schemas/episode-graph.shacl.ttl"><code>episode-graph.shacl.ttl</code></a> — SHACL shapes validating episode, participant, observation, and relation structure</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="review">
+    <h2>Systematic-review data</h2>
+    <div class="grid">
+      <div class="box">
+        <h3>Coding</h3>
+        <ul>
+          <li><a href="review/resources-coding.csv"><code>resources-coding.csv</code></a> — 170 consolidated resources, coded across the 17 categories and 9 properties</li>
+          <li><a href="review/codebook.md"><code>codebook.md</code></a> — coding protocol and value vocabulary</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Study selection</h3>
+        <ul>
+          <li><a href="review/excluded-studies.csv"><code>excluded-studies.csv</code></a> — 35 full texts excluded at assessment, with reasons</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Reference implementation accompanying the manuscript — not a production system.</p>
+  <p>Namespace prefix: <code>https://hzhengrd.github.io/CHRC/vocab/chrc#</code> &nbsp;·&nbsp; Cite via the GitHub repository (Zenodo DOI pending).</p>
+</footer>
+
+<script>
+const COLOR = { Human: '#b0247c', Robot: '#2c88ba', Task: '#cf7a00', Environment: '#206e4a' };
+
+const EXAMPLES = [
+  {
+    id: 'wang2021-digital-twin',
+    name: 'Process-level digital twin',
+    setting: 'Drywall installation · laboratory mock-up',
+    character: 'Integrated',
+    access: 'on-request',
+    coverage: {
+      Human:      { 'capability & role': 'captured', 'physical state': 'captured', 'action': 'captured', 'intent': 'captured', 'internal state': 'captured' },
+      Robot:      { 'capability & config': 'captured', 'physical state': 'captured', 'action': 'captured', 'intent': 'captured' },
+      Task:       { 'specification': 'captured', 'structure': 'captured', 'allocation': 'captured', 'work-object state': 'captured', 'execution': 'captured' },
+      Environment:{ 'geometric structure': 'captured', 'semantic content': 'captured', 'operating conditions': 'notReported' }
+    }
+  },
+  {
+    id: 'wang2023-gaze-aware',
+    name: 'Gaze-aware hand-gesture recognition',
+    setting: 'Construction commands · laboratory mock-up',
+    character: 'Human-deep',
+    access: 'open',
+    coverage: {
+      Human:      { 'capability & role': 'notReported', 'physical state': 'captured', 'action': 'captured', 'intent': 'captured', 'internal state': 'captured' },
+      Robot:      { 'capability & config': 'captured', 'physical state': 'notReported', 'action': 'notReported', 'intent': 'notReported' },
+      Task:       { 'specification': 'notReported', 'structure': 'notReported', 'allocation': 'captured', 'work-object state': 'notReported', 'execution': 'captured' },
+      Environment:{ 'geometric structure': 'notReported', 'semantic content': 'notReported', 'operating conditions': 'notReported' }
+    }
+  },
+  {
+    id: 'pan2023-task-primitives',
+    name: 'Multi-granularity task-primitive learning',
+    setting: 'Scaffolding videos',
+    character: 'Task-deep',
+    access: 'metadata-only',
+    coverage: {
+      Human:      { 'capability & role': 'notReported', 'physical state': 'notReported', 'action': 'captured', 'intent': 'notReported', 'internal state': 'notReported' },
+      Robot:      { 'capability & config': 'notCaptured', 'physical state': 'notReported', 'action': 'notReported', 'intent': 'notReported' },
+      Task:       { 'specification': 'captured', 'structure': 'captured', 'allocation': 'notReported', 'work-object state': 'notReported', 'execution': 'captured' },
+      Environment:{ 'geometric structure': 'notReported', 'semantic content': 'notReported', 'operating conditions': 'notReported' }
+    }
+  },
+  {
+    id: 'rossini2026-concert',
+    name: 'CONCERT modular construction robot',
+    setting: 'Drilling / sanding / plastering · on-site',
+    character: 'Robot-deep',
+    access: 'open',
+    coverage: {
+      Human:      { 'capability & role': 'captured', 'physical state': 'notReported', 'action': 'captured', 'intent': 'captured', 'internal state': 'notReported' },
+      Robot:      { 'capability & config': 'captured', 'physical state': 'captured', 'action': 'captured', 'intent': 'captured' },
+      Task:       { 'specification': 'captured', 'structure': 'captured', 'allocation': 'captured', 'work-object state': 'captured', 'execution': 'captured' },
+      Environment:{ 'geometric structure': 'captured', 'semantic content': 'captured', 'operating conditions': 'notReported' }
+    }
+  }
+];
+
+function accessBadge(a) {
+  if (a === 'open') return '<span class="badge open">open</span>';
+  if (a === 'on-request') return '<span class="badge request">on-request</span>';
+  return '<span class="badge meta">metadata-only</span>';
+}
+
+function countCoverage(c) {
+  let cap = 0, nc = 0, nr = 0;
+  Object.values(c).forEach(ref => {
+    Object.values(ref).forEach(s => {
+      if (s === 'captured') cap++;
+      else if (s === 'notCaptured') nc++;
+      else nr++;
+    });
+  });
+  return { cap, nc, nr };
+}
+
+const cards = document.getElementById('cards');
+EXAMPLES.forEach(ex => {
+  const { cap, nc, nr } = countCoverage(ex.coverage);
+
+  let coverageHtml = '';
+  Object.entries(ex.coverage).forEach(([ref, cats]) => {
+    coverageHtml += `<div class="r"><div class="rname" style="color:${COLOR[ref]}">${ref}</div><div class="dots">`;
+    Object.entries(cats).forEach(([cat, status]) => {
+      coverageHtml += `<span class="cell ${status}" style="${status === 'captured' ? 'color:' + COLOR[ref] : ''}" title="${ref} · ${cat}: ${status}"><span class="dot"></span>${cat}</span>`;
+    });
+    coverageHtml += `</div></div>`;
+  });
+
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <div class="head">
+      <div class="row1">
+        <span class="name">${ex.name}</span>
+        <span class="meta">${cap} captured</span>
+      </div>
+      <div class="meta">${ex.setting} · ${ex.character}</div>
+      <div class="badges">
+        ${accessBadge(ex.access)}
+        <span class="badge">${cap} captured</span>
+        ${nc ? `<span class="badge">${nc} not captured</span>` : ''}
+        <span class="badge">${nr} not reported</span>
+      </div>
+    </div>
+    <div class="coverage">${coverageHtml}</div>
+  `;
+  card.querySelector('.head').addEventListener('click', () => card.classList.toggle('open'));
+  cards.appendChild(card);
+});
+</script>
+</body>
+</html>
