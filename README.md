@@ -10,7 +10,7 @@ Public, machine-readable assets accompanying the manuscript:
 |-----------|---------------|
 | `vocab/` | The CHRC vocabulary (`chrc.ttl`) and the JSON-LD `@context` (`context.jsonld`). |
 | `schemas/` | `resource-profile.schema.json` (JSON Schema for the resource profile) and `episode-graph.shacl.ttl` (SHACL shapes for the collaborative-episode graph). |
-| `examples/` | Worked examples: a resource profile (JSON-LD) and a collaborative-episode graph (RDF/Turtle) for three published resources. |
+| `examples/` | Worked examples: a resource profile (JSON-LD) and a collaborative-episode graph (RDF/Turtle) for four published resources. |
 | `compatibility/` | The applied compatibility decision matrix (instantiation of Supplementary Table S3 of the manuscript). |
 | `review/` | The systematic-review coding data: codebook, per-resource coding table, and the PRISMA exclusion list. |
 

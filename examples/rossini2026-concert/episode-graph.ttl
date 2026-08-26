@@ -1,0 +1,30 @@
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix chrc: <https://hzhengrd.github.io/CHRC/vocab/chrc#> .
+@prefix ex:   <https://hzhengrd.github.io/CHRC/examples/rossini2026-concert/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# A robot-focused resource: the episode records a modular construction robot
+# performing construction tasks, without a documented human stream.
+
+ex:episode-1 a chrc:CollaborativeEpisode, prov:Entity ;
+    chrc:episodeId "rossini2026-EP01" ;
+    chrc:focalTask ex:drilling-task ;
+    chrc:environmentConfig ex:construction-site .
+
+ex:robot-1 a chrc:Robot, prov:Agent ;
+    chrc:embodiment "modular reconfigurable manipulator" ;
+    chrc:role "notReported" ;
+    prov:wasAssociatedWith ex:episode-1 .
+
+ex:drilling-task a chrc:Task, prov:Entity ;
+    chrc:specification ex:drilling-goal .
+
+ex:construction-site a chrc:Environment, prov:Entity .
+
+ex:module-mesh-1 a chrc:Observation ;
+    chrc:of ex:robot-1 ;
+    chrc:representationForm "mesh; module description (JSON)" ;
+    chrc:unitOfObservation "module" ;
+    chrc:encodingMethod "extracted from project documents" ;
+    chrc:spatialReference "notReported" ;
+    chrc:temporalReference "notReported" .

@@ -1,6 +1,6 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix chrc: <https://hzhengrd.github.io/CHRC/vocab/chrc#> .
-@prefix ex:   <https://hzhengrd.github.io/CHRC/examples/pan2023-primitives/> .
+@prefix ex:   <https://hzhengrd.github.io/CHRC/examples/pan2023-task-primitives/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 
 # A task-focused resource: the episode records a single worker's activity

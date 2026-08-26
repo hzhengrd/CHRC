@@ -6,7 +6,7 @@
     "name": "schema:name",
     "creators": "schema:creator"
   },
-  "id": "https://hzhengrd.github.io/CHRC/examples/pan2023-primitives/profile",
+  "id": "https://hzhengrd.github.io/CHRC/examples/pan2023-task-primitives/profile",
   "name": "Multi-granularity task-primitive learning from construction videos",
   "creators": [
     { "name": "Pan and Yu", "role": "authors" }

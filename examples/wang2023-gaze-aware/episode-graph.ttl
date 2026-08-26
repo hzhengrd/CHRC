@@ -1,0 +1,32 @@
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix chrc: <https://hzhengrd.github.io/CHRC/vocab/chrc#> .
+@prefix ex:   <https://hzhengrd.github.io/CHRC/examples/wang2023-gaze-aware/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# A human-focused resource: the episode records a worker's gaze and hand
+# gestures for construction commands, without a documented robot stream.
+
+ex:episode-1 a chrc:CollaborativeEpisode, prov:Entity ;
+    chrc:episodeId "wang2023gaze-EP01" ;
+    chrc:focalTask ex:construction-command-task ;
+    chrc:environmentConfig ex:lab-mockup .
+
+ex:worker-1 a chrc:Human, prov:Agent ;
+    chrc:role "operator" ;
+    prov:wasAssociatedWith ex:episode-1 .
+
+ex:construction-command-task a chrc:Task, prov:Entity .
+
+ex:lab-mockup a chrc:Environment, prov:Entity .
+
+ex:gaze-1 a chrc:Observation ;
+    chrc:of ex:worker-1 ;
+    chrc:modality "gaze tracking" ;
+    chrc:spatialReference "notReported" ;
+    chrc:temporalReference "notReported" .
+
+ex:gesture-1 a chrc:Observation ;
+    chrc:of ex:worker-1 ;
+    chrc:modality "hand gesture" ;
+    chrc:spatialReference "notReported" ;
+    chrc:temporalReference "notReported" .

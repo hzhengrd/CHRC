@@ -1,0 +1,83 @@
+{
+  "@context": {
+    "@vocab": "https://hzhengrd.github.io/CHRC/vocab/chrc#",
+    "schema": "http://schema.org/",
+    "id": "@id",
+    "name": "schema:name",
+    "creators": "schema:creator"
+  },
+  "id": "https://hzhengrd.github.io/CHRC/examples/wang2023-gaze-aware/profile",
+  "name": "Gaze-aware hand-gesture recognition for intelligent construction",
+  "creators": [
+    { "name": "Wang et al.", "role": "authors" }
+  ],
+  "relatedPublications": [
+    "https://doi.org/10.1016/j.engappai.2023.106179"
+  ],
+  "recordBasis": "episode",
+  "intendedPurpose": "Gaze-aware hand-gesture recognition for construction commands; the resource records gaze, hand gesture, and command labels.",
+  "limitations": "The resource is human-centered: no synchronized robot stream or task outcome is documented.",
+  "hrteCoverage": {
+    "human": {
+      "capabilityAndRole": "notReported",
+      "physicalState": "captured",
+      "action": "captured",
+      "intent": "captured",
+      "internalState": "captured"
+    },
+    "robot": {
+      "capabilityAndConfiguration": "notReported",
+      "physicalState": "notReported",
+      "action": "notReported",
+      "intent": "notReported"
+    },
+    "task": {
+      "specification": "captured",
+      "structure": "notReported",
+      "allocation": "notReported",
+      "workObjectState": "notReported",
+      "execution": "notReported"
+    },
+    "environment": {
+      "geometricStructure": "notReported",
+      "semanticContent": "notReported",
+      "operatingConditions": "notReported"
+    }
+  },
+  "crossReferentRelations": [
+    "communication"
+  ],
+  "scale": {
+    "participants": "notReported",
+    "robotInstances": "notReported",
+    "robotPlatforms": "notReported",
+    "focalTasks": "notReported",
+    "environmentConfigurations": 1,
+    "sessionsOrTrials": "notReported",
+    "duration": "notReported",
+    "setting": "laboratory mock-up",
+    "origin": "real"
+  },
+  "instantiation": [
+    {
+      "category": "human.action",
+      "modality": "gaze tracking; hand gesture",
+      "representationForm": "time series; class label",
+      "unitOfObservation": "gesture segment",
+      "measurementUnit": "notReported",
+      "source": "eye tracker; camera",
+      "perspective": "egocentric / body-worn",
+      "encodingMethod": "system-logged; manually annotated",
+      "spatialReference": "notReported",
+      "temporalReference": "notReported"
+    }
+  ],
+  "access": {
+    "tier": "open",
+    "license": "open source (see repository LICENSE)",
+    "custodian": "Wang et al.",
+    "requestProcedure": "Public repository",
+    "permittedUses": [ "research", "reuse under repository license" ],
+    "retention": "notReported"
+  }
+}
