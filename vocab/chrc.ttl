@@ -18,7 +18,9 @@ chrc:Human a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Agent ; rdfs:label "Hu
 chrc:Robot a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Agent ; rdfs:label "Robot" .
 
 chrc:Task a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Entity ; rdfs:label "Task" .
-chrc:WorkObject a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Entity ; rdfs:label "Work object" .
+chrc:WorkObject a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Entity ;
+  rdfs:label "Work object" ;
+  rdfs:comment "A focal work-object of a task (material, component, tool, or work product). Work-objects are task information under the H/R/T/E taxonomy, not a fifth top-level referent; they are linked from a task via chrc:workObject." .
 chrc:Environment a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Entity ; rdfs:label "Environment" .
 
 chrc:Observation a rdfs:Class, owl:Class ;

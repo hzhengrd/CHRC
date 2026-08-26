@@ -3,28 +3,33 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 
-# Shape for a collaborative episode: it must identify the focal task and the
-# environmental configuration, and carry a persistent episode identifier.
+# Structural minimum for a collaborative-episode graph. The constraints are
+# deliberately lenient so that partial records remain valid; reuse is assessed
+# by the compatibility rules (Supplementary Table S3), not by these shapes.
+
+# An episode must carry an identifier, a focal task, and at least one
+# associated participant. The environmental configuration is optional.
 chrc:EpisodeShape a sh:NodeShape ;
   sh:targetClass chrc:CollaborativeEpisode ;
   sh:property [ sh:path chrc:episodeId ; sh:minCount 1 ; sh:datatype xsd:string ] ;
   sh:property [ sh:path chrc:focalTask ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
-  sh:property [ sh:path chrc:environmentConfig ; sh:minCount 1 ; sh:nodeKind sh:IRI ] .
+  sh:property [ sh:path chrc:environmentConfig ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path [ sh:inversePath prov:wasAssociatedWith ] ; sh:minCount 1 ] .
 
-# Participants (human or robot) must be associated with an episode and, when
-# stated, carry a role.
+# Participants (human or robot) must be associated with an episode.
 chrc:ParticipantShape a sh:NodeShape ;
   sh:targetClass chrc:Human, chrc:Robot ;
-  sh:property [ sh:path prov:wasAssociatedWith ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path prov:wasAssociatedWith ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
   sh:property [ sh:path chrc:role ; sh:datatype xsd:string ] .
 
-# An observation must state which referent it is about and carry both spatial
-# and temporal references.
+# An observation must state which referent it is about. Spatial and temporal
+# references are optional in the structural minimum; their presence is what the
+# compatibility rules check for reuse.
 chrc:ObservationShape a sh:NodeShape ;
   sh:targetClass chrc:Observation ;
   sh:property [ sh:path chrc:of ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
-  sh:property [ sh:path chrc:spatialReference ; sh:minCount 1 ] ;
-  sh:property [ sh:path chrc:temporalReference ; sh:minCount 1 ] .
+  sh:property [ sh:path chrc:spatialReference ; sh:datatype xsd:string ] ;
+  sh:property [ sh:path chrc:temporalReference ; sh:datatype xsd:string ] .
 
 # Any relation (including user-defined subclasses of chrc:Relation) must name
 # both its source and target.
