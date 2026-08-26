@@ -24,7 +24,7 @@
       "physicalState": "captured",
       "action": "captured",
       "intent": "captured",
-      "internalState": "notCaptured"
+      "internalState": "captured"
     },
     "robot": {
       "capabilityAndConfiguration": "captured",
@@ -41,7 +41,7 @@
     },
     "environment": {
       "geometricStructure": "captured",
-      "semanticContent": "notReported",
+      "semanticContent": "captured",
       "operatingConditions": "notReported"
     }
   },
