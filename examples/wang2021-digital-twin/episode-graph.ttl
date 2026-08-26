@@ -1,0 +1,70 @@
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix chrc: <https://hzhengrd.github.io/CHRC/vocab/chrc#> .
+@prefix ex:   <https://hzhengrd.github.io/CHRC/examples/wang2021-digital-twin/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+ex:episode-1 a chrc:CollaborativeEpisode, prov:Entity ;
+    chrc:episodeId "wang2021-EP01" ;
+    chrc:focalTask ex:drywall-installation ;
+    chrc:environmentConfig ex:workspace-A ;
+    prov:startedAtTime "2021-06-01T09:00:00Z"^^xsd:dateTime ;
+    prov:endedAtTime   "2021-06-01T09:12:00Z"^^xsd:dateTime .
+
+ex:worker-1 a chrc:Human, prov:Agent ;
+    chrc:role "installer" ;
+    prov:wasAssociatedWith ex:episode-1 .
+
+ex:robot-1 a chrc:Robot, prov:Agent ;
+    chrc:embodiment "collaborative manipulator" ;
+    prov:wasAssociatedWith ex:episode-1 .
+
+ex:drywall-installation a chrc:Task, prov:Entity ;
+    chrc:specification ex:target-panel-pose ;
+    chrc:workObject ex:panel-1 .
+
+ex:panel-1 a chrc:WorkObject, prov:Entity ;
+    chrc:pose ex:panel-pose-1 .
+
+ex:workspace-A a chrc:Environment, prov:Entity ;
+    chrc:geometricStructure ex:pointcloud-1 .
+
+ex:command-1 a chrc:Commands, prov:Activity ;
+    chrc:from ex:worker-1 ;
+    chrc:to ex:robot-1 ;
+    prov:atTime "2021-06-01T09:01:10Z"^^xsd:dateTime .
+
+ex:hold-1 a chrc:ActsOn, prov:Activity ;
+    chrc:from ex:robot-1 ;
+    chrc:to ex:panel-1 ;
+    prov:atTime "2021-06-01T09:02:00Z"^^xsd:dateTime .
+
+ex:constraint-1 a chrc:ConstrainedBy, prov:Activity ;
+    chrc:from ex:panel-1 ;
+    chrc:to ex:workspace-A .
+
+ex:pointcloud-1 a chrc:Observation ;
+    chrc:of ex:workspace-A ;
+    chrc:spatialReference "BIM coordinate system" ;
+    chrc:temporalReference "timestamp" .
+
+ex:panel-pose-1 a chrc:Observation ;
+    chrc:of ex:panel-1 ;
+    chrc:spatialReference "robot base frame" ;
+    chrc:temporalReference "control cycle" ;
+    chrc:uncertainty "notReported" .
+
+ex:target-panel-pose a chrc:Observation ;
+    chrc:of ex:drywall-installation ;
+    chrc:spatialReference "task-local frame" ;
+    chrc:temporalReference "event time" .
+
+ex:pointcloud-1 prov:wasGeneratedBy ex:scanning-1 .
+ex:scanning-1 a prov:Activity ;
+    prov:used ex:laser-scanner-1 ;
+    chrc:encodingMethod "computed from other fields" ;
+    chrc:responsibleAgent ex:worker-1 .
+
+ex:panel-pose-1 prov:wasGeneratedBy ex:pose-estimation-1 .
+ex:pose-estimation-1 a prov:Activity ;
+    chrc:encodingMethod "automatically inferred" ;
+    chrc:responsibleAgent ex:robot-1 .

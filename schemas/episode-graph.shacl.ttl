@@ -1,0 +1,33 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix chrc: <https://hzhengrd.github.io/CHRC/vocab/chrc#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# Shape for a collaborative episode: it must identify the focal task and the
+# environmental configuration, and carry a persistent episode identifier.
+chrc:EpisodeShape a sh:NodeShape ;
+  sh:targetClass chrc:CollaborativeEpisode ;
+  sh:property [ sh:path chrc:episodeId ; sh:minCount 1 ; sh:datatype xsd:string ] ;
+  sh:property [ sh:path chrc:focalTask ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path chrc:environmentConfig ; sh:minCount 1 ; sh:nodeKind sh:IRI ] .
+
+# Participants (human or robot) must be associated with an episode and, when
+# stated, carry a role.
+chrc:ParticipantShape a sh:NodeShape ;
+  sh:targetClass chrc:Human, chrc:Robot ;
+  sh:property [ sh:path prov:wasAssociatedWith ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path chrc:role ; sh:datatype xsd:string ] .
+
+# An observation must state which referent it is about and carry both spatial
+# and temporal references.
+chrc:ObservationShape a sh:NodeShape ;
+  sh:targetClass chrc:Observation ;
+  sh:property [ sh:path chrc:of ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path chrc:spatialReference ; sh:minCount 1 ] ;
+  sh:property [ sh:path chrc:temporalReference ; sh:minCount 1 ] .
+
+# A relation must name both its source and target.
+chrc:RelationShape a sh:NodeShape ;
+  sh:targetClass chrc:Commands, chrc:ActsOn, chrc:ConstrainedBy, chrc:CoordinatesWith, chrc:CoManipulates, chrc:Fastens, chrc:Holds, chrc:AlignedTo ;
+  sh:property [ sh:path chrc:from ; sh:minCount 1 ; sh:nodeKind sh:IRI ] ;
+  sh:property [ sh:path chrc:to ; sh:minCount 1 ; sh:nodeKind sh:IRI ] .

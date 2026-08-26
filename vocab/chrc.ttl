@@ -1,0 +1,106 @@
+@prefix chrc: <https://hzhengrd.github.io/CHRC/vocab/chrc#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+<https://hzhengrd.github.io/CHRC/vocab/chrc> a owl:Ontology ;
+  rdfs:label "CHRC Vocabulary" ;
+  rdfs:comment "Reference vocabulary for describing construction human-robot collaboration (CHRC) data resources under the H/R/T/E taxonomy. Not a production ontology." .
+
+# ---- Classes ---------------------------------------------------------------
+
+chrc:CollaborativeEpisode a rdfs:Class, owl:Class ;
+  rdfs:label "Collaborative episode" ;
+  rdfs:comment "A temporally bounded segment of construction work with specified human and robot participants, a focal task, and an environmental context." .
+
+chrc:Human a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Agent ; rdfs:label "Human" .
+chrc:Robot a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Agent ; rdfs:label "Robot" .
+
+chrc:Task a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Entity ; rdfs:label "Task" .
+chrc:WorkObject a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Entity ; rdfs:label "Work object" .
+chrc:Environment a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Entity ; rdfs:label "Environment" .
+
+chrc:Observation a rdfs:Class, owl:Class ;
+  rdfs:label "Observation" ;
+  rdfs:comment "A recorded value, label, or state about a referent, with spatial reference, temporal reference, and provenance." .
+
+chrc:ResourceProfile a rdfs:Class, owl:Class ;
+  rdfs:label "Resource profile" ;
+  rdfs:comment "A machine-readable description of a CHRC data resource: identity, H/R/T/E coverage, scale, instantiation, provenance, and access." .
+
+# Relation types (reified, PROV-style activities)
+chrc:Commands       a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity .
+chrc:ActsOn         a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity .
+chrc:ConstrainedBy  a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity .
+chrc:CoordinatesWith a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity .
+chrc:CoManipulates  a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity .
+chrc:Fastens        a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity .
+chrc:Holds          a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity .
+chrc:AlignedTo      a rdfs:Class, owl:Class ; rdfs:subClassOf prov:Activity .
+
+# ---- Episode-level properties ---------------------------------------------
+
+chrc:episodeId a owl:DatatypeProperty ; rdfs:label "episode identifier" .
+chrc:focalTask a owl:ObjectProperty ; rdfs:domain chrc:CollaborativeEpisode ; rdfs:range chrc:Task .
+chrc:environmentConfig a owl:ObjectProperty ; rdfs:domain chrc:CollaborativeEpisode ; rdfs:range chrc:Environment .
+
+chrc:workObject a owl:ObjectProperty ; rdfs:domain chrc:Task ; rdfs:range chrc:WorkObject .
+chrc:specification a owl:ObjectProperty ; rdfs:comment "Goal, requirements, success criteria, or constraints of a task." .
+chrc:pose a owl:ObjectProperty .
+chrc:geometricStructure a owl:ObjectProperty .
+
+chrc:role a owl:DatatypeProperty .
+chrc:embodiment a owl:DatatypeProperty .
+
+# Relation endpoints
+chrc:from a owl:ObjectProperty ; rdfs:label "from" .
+chrc:to   a owl:ObjectProperty ; rdfs:label "to" .
+
+# ---- Observation-level properties -----------------------------------------
+
+chrc:of a owl:ObjectProperty ; rdfs:comment "The referent an observation is about." .
+chrc:spatialReference a owl:DatatypeProperty .
+chrc:temporalReference a owl:DatatypeProperty .
+chrc:uncertainty a owl:DatatypeProperty .
+chrc:encodingMethod a owl:DatatypeProperty .
+chrc:responsibleAgent a owl:ObjectProperty .
+
+# ---- Profile-level properties ---------------------------------------------
+
+chrc:recordBasis a owl:DatatypeProperty .
+chrc:intendedPurpose a owl:DatatypeProperty .
+chrc:limitations a owl:DatatypeProperty .
+chrc:version a owl:DatatypeProperty .
+chrc:relatedPublications a owl:DatatypeProperty .
+chrc:hrteCoverage a owl:ObjectProperty ;
+  rdfs:comment "H/R/T/E coverage of a resource profile (human, robot, task, environment)." .
+chrc:crossReferentRelations a owl:ObjectProperty .
+chrc:scale a owl:ObjectProperty .
+chrc:instantiation a owl:ObjectProperty .
+chrc:provenance a owl:ObjectProperty .
+chrc:access a owl:ObjectProperty .
+
+# ---- The 17 information categories (used as coverage keys) ----------------
+
+chrc:capabilityAndRole a owl:ObjectProperty .
+chrc:physicalState a owl:ObjectProperty .
+chrc:action a owl:ObjectProperty .
+chrc:intent a owl:ObjectProperty .
+chrc:internalState a owl:ObjectProperty .
+chrc:capabilityAndConfiguration a owl:ObjectProperty .
+chrc:structure a owl:ObjectProperty .
+chrc:allocation a owl:ObjectProperty .
+chrc:workObjectState a owl:ObjectProperty .
+chrc:execution a owl:ObjectProperty .
+chrc:semanticContent a owl:ObjectProperty .
+chrc:operatingConditions a owl:ObjectProperty .
+
+# ---- The nine data-instantiation properties -------------------------------
+
+chrc:modality a owl:DatatypeProperty .
+chrc:representationForm a owl:DatatypeProperty .
+chrc:unitOfObservation a owl:DatatypeProperty .
+chrc:measurementUnit a owl:DatatypeProperty .
+chrc:source a owl:DatatypeProperty .
+chrc:perspective a owl:DatatypeProperty .

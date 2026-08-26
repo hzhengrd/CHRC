@@ -1,0 +1,108 @@
+{
+  "@context": {
+    "@vocab": "https://hzhengrd.github.io/CHRC/vocab/chrc#",
+    "schema": "http://schema.org/",
+    "id": "@id",
+    "name": "schema:name",
+    "creators": "schema:creator"
+  },
+  "id": "https://hzhengrd.github.io/CHRC/examples/wang2021-digital-twin/profile",
+  "name": "Process-level digital twin for drywall panel installation (HRC)",
+  "creators": [
+    { "name": "Wang et al.", "role": "authors and data custodians" }
+  ],
+  "version": "1.0",
+  "relatedPublications": [
+    "https://doi.org/10.1061/(ASCE)CP.1943-5487.0000988"
+  ],
+  "recordBasis": "episode",
+  "intendedPurpose": "Interactive task planning, motion-plan selection, execution supervision, and evaluation of a process-level collaborative workflow.",
+  "limitations": "Supporting data and selected models/code are available on request; a complete, independently inspectable package of raw streams and event links could not be verified at review time.",
+  "hrteCoverage": {
+    "human": {
+      "capabilityAndRole": "captured",
+      "physicalState": "captured",
+      "action": "captured",
+      "intent": "captured",
+      "internalState": "notCaptured"
+    },
+    "robot": {
+      "capabilityAndConfiguration": "captured",
+      "physicalState": "captured",
+      "action": "captured",
+      "intent": "captured"
+    },
+    "task": {
+      "specification": "captured",
+      "structure": "captured",
+      "allocation": "captured",
+      "workObjectState": "captured",
+      "execution": "captured"
+    },
+    "environment": {
+      "geometricStructure": "captured",
+      "semanticContent": "notReported",
+      "operatingConditions": "notReported"
+    }
+  },
+  "crossReferentRelations": [
+    "commands", "executes", "actsOn", "constrainedBy"
+  ],
+  "scale": {
+    "participants": 20,
+    "robotInstances": 1,
+    "robotPlatforms": 1,
+    "focalTasks": 1,
+    "environmentConfigurations": 1,
+    "sessionsOrTrials": "notReported",
+    "duration": "notReported",
+    "setting": "laboratory mock-up",
+    "origin": "real"
+  },
+  "instantiation": [
+    {
+      "category": "task.workObjectState",
+      "modality": "point cloud",
+      "representationForm": "point cloud",
+      "unitOfObservation": "frame",
+      "measurementUnit": "meters",
+      "source": "laser scanner",
+      "perspective": "fixed",
+      "encodingMethod": "computed from other fields",
+      "spatialReference": "BIM coordinate system",
+      "temporalReference": "timestamp"
+    },
+    {
+      "category": "human.intent",
+      "modality": "text (user command)",
+      "representationForm": "text label",
+      "unitOfObservation": "event",
+      "source": "operator interface",
+      "encodingMethod": "system-logged",
+      "temporalReference": "event time"
+    },
+    {
+      "category": "robot.intent",
+      "modality": "trajectory",
+      "representationForm": "trajectory",
+      "unitOfObservation": "operation",
+      "source": "robot controller",
+      "encodingMethod": "system-logged",
+      "spatialReference": "robot base frame",
+      "temporalReference": "control cycle"
+    }
+  ],
+  "provenance": {
+    "collectionProcedure": "Drywall-installation study linking user commands and target-panel poses with robot plans, execution, and point-cloud-derived workspace and work-object states.",
+    "validation": "Reported in the source publication.",
+    "responsibleAgents": [ "Wang et al." ]
+  },
+  "access": {
+    "tier": "registered",
+    "license": "available on request",
+    "custodian": "Wang et al.",
+    "requestProcedure": "Contact the corresponding author.",
+    "permittedUses": [ "non-commercial research" ],
+    "retention": "notReported"
+  }
+}

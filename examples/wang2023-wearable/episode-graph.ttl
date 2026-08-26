@@ -1,0 +1,30 @@
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix chrc: <https://hzhengrd.github.io/CHRC/vocab/chrc#> .
+@prefix ex:   <https://hzhengrd.github.io/CHRC/examples/wang2023-wearable/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# A human-focused resource: the episode records gesture commands of a single
+# worker for tower-crane operation, without a robot stream or task outcome.
+
+ex:episode-1 a chrc:CollaborativeEpisode, prov:Entity ;
+    chrc:episodeId "wang2023wearable-EP01" ;
+    chrc:focalTask ex:tower-crane-operation ;
+    chrc:environmentConfig ex:tower-crane-site .
+
+ex:worker-1 a chrc:Human, prov:Agent ;
+    chrc:role "operator" ;
+    prov:wasAssociatedWith ex:episode-1 .
+
+ex:tower-crane-operation a chrc:Task, prov:Entity ;
+    chrc:specification ex:crane-command-set .
+
+ex:tower-crane-site a chrc:Environment, prov:Entity .
+
+ex:gesture-1 a chrc:Observation ;
+    chrc:of ex:worker-1 ;
+    chrc:modality "inertial (21 channels)" ;
+    chrc:representationForm "time series" ;
+    chrc:unitOfObservation "gesture segment" ;
+    chrc:encodingMethod "system-logged" ;
+    chrc:spatialReference "notReported" ;
+    chrc:temporalReference "20 Hz sample index" .

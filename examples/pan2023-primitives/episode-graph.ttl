@@ -1,0 +1,31 @@
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix chrc: <https://hzhengrd.github.io/CHRC/vocab/chrc#> .
+@prefix ex:   <https://hzhengrd.github.io/CHRC/examples/pan2023-primitives/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# A task-focused resource: the episode records a single worker's activity
+# against a four-level task hierarchy, without a robot stream or relations.
+
+ex:episode-1 a chrc:CollaborativeEpisode, prov:Entity ;
+    chrc:episodeId "pan2023-EP01" ;
+    chrc:focalTask ex:scaffolding-task ;
+    chrc:environmentConfig ex:scaffolding-site .
+
+ex:worker-1 a chrc:Human, prov:Agent ;
+    chrc:role "notReported" ;
+    prov:wasAssociatedWith ex:episode-1 .
+
+ex:scaffolding-task a chrc:Task, prov:Entity ;
+    chrc:specification ex:scaffolding-goal ;
+    chrc:structure ex:task-hierarchy .
+
+ex:scaffolding-site a chrc:Environment, prov:Entity .
+
+ex:clip-1 a chrc:Observation ;
+    chrc:of ex:worker-1 ;
+    chrc:modality "RGB video" ;
+    chrc:representationForm "class label (4-level hierarchy)" ;
+    chrc:unitOfObservation "3-second clip" ;
+    chrc:encodingMethod "manually annotated" ;
+    chrc:spatialReference "notReported" ;
+    chrc:temporalReference "clip index" .

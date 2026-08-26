@@ -1,0 +1,9 @@
+{
+  "@context": {
+    "@vocab": "https://hzhengrd.github.io/CHRC/vocab/chrc#",
+    "schema": "http://schema.org/",
+    "id": "@id",
+    "name": "schema:name",
+    "creators": "schema:creator"
+  }
+}

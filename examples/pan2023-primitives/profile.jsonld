@@ -1,0 +1,77 @@
+{
+  "@context": {
+    "@vocab": "https://hzhengrd.github.io/CHRC/vocab/chrc#",
+    "schema": "http://schema.org/",
+    "id": "@id",
+    "name": "schema:name",
+    "creators": "schema:creator"
+  },
+  "id": "https://hzhengrd.github.io/CHRC/examples/pan2023-primitives/profile",
+  "name": "Multi-granularity task-primitive learning from construction videos",
+  "creators": [
+    { "name": "Pan and Yu", "role": "authors" }
+  ],
+  "relatedPublications": [
+    "https://doi.org/10.1061/9780784485224.081"
+  ],
+  "recordBasis": "episode",
+  "intendedPurpose": "Comparison of task-label granularity and identification of a level balancing recognition performance with task knowledge.",
+  "limitations": "Documented clips do not establish synchronized robot decisions, task allocation, or human-robot relations.",
+  "hrteCoverage": {
+    "human": {
+      "capabilityAndRole": "notReported",
+      "physicalState": "notReported",
+      "action": "captured",
+      "intent": "notReported",
+      "internalState": "notReported"
+    },
+    "robot": {
+      "capabilityAndConfiguration": "notReported",
+      "physicalState": "notReported",
+      "action": "notReported",
+      "intent": "notReported"
+    },
+    "task": {
+      "specification": "captured",
+      "structure": "captured",
+      "allocation": "notReported",
+      "workObjectState": "notReported",
+      "execution": "captured"
+    },
+    "environment": {
+      "geometricStructure": "notReported",
+      "semanticContent": "notReported",
+      "operatingConditions": "notReported"
+    }
+  },
+  "crossReferentRelations": [],
+  "scale": {
+    "participants": "notReported",
+    "robotInstances": 0,
+    "robotPlatforms": 0,
+    "focalTasks": 1,
+    "environmentConfigurations": "notReported",
+    "sessionsOrTrials": 7,
+    "duration": "approx. 40 min",
+    "setting": "construction (scaffolding)",
+    "origin": "real"
+  },
+  "instantiation": [
+    {
+      "category": "task.structure",
+      "modality": "RGB video",
+      "representationForm": "class label (4-level hierarchy)",
+      "unitOfObservation": "3-second clip",
+      "measurementUnit": "n/a",
+      "source": "camera",
+      "perspective": "notReported",
+      "encodingMethod": "manually annotated",
+      "spatialReference": "notReported",
+      "temporalReference": "clip index"
+    }
+  ],
+  "access": {
+    "tier": "notReported",
+    "license": "notReported"
+  }
+}
