@@ -53,7 +53,7 @@
     "environmentConfigurations": "notReported",
     "sessionsOrTrials": "notReported",
     "duration": "notReported",
-    "setting": "construction (tower crane)",
+    "setting": "notReported",
     "origin": "real"
   },
   "instantiation": [
@@ -71,7 +71,7 @@
     }
   ],
   "access": {
-    "tier": "notReported",
+    "tier": "metadata-only",
     "license": "notReported"
   }
 }

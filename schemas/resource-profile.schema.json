@@ -60,8 +60,8 @@
         "environmentConfigurations": { "type": ["integer", "string"] },
         "sessionsOrTrials": { "type": ["integer", "string"] },
         "duration": { "type": "string" },
-        "setting": { "type": "string" },
-        "origin": { "type": "string", "enum": ["real", "synthetic", "mixed"] }
+        "setting": { "type": "string", "enum": ["on-site", "off-site production", "laboratory mock-up", "teleoperation", "immersive environment", "simulation", "notReported"] },
+        "origin": { "type": "string", "enum": ["real", "synthetic", "mixed", "notReported"] }
       }
     },
     "instantiation": {
@@ -79,7 +79,7 @@
       "properties": {
         "tier": {
           "type": "string",
-          "enum": ["open", "registered", "approved", "secure-computation", "metadata-only"]
+          "enum": ["open", "on-request", "secure-computation", "metadata-only"]
         },
         "license": { "type": "string" },
         "custodian": { "type": "string" },
