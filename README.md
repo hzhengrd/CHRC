@@ -27,4 +27,6 @@ These files are **reference implementations** accompanying the manuscript. They 
 
 ## Citation
 
-TODO: add the Zenodo DOI after archiving this repository.
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22125779.svg)](https://doi.org/10.5281/zenodo.22125779)
+
+Cite as: **CHRC Data Infrastructure** (2026). Public assets accompanying the manuscript. Zenodo. DOI: [10.5281/zenodo.22125779](https://doi.org/10.5281/zenodo.22125779).
