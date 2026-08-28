@@ -15,7 +15,7 @@
   "relatedPublications": [
     "https://doi.org/10.1061/(ASCE)CP.1943-5487.0000988"
   ],
-  "recordBasis": "episode",
+  "recordBasis": "mixed",
   "intendedPurpose": "Interactive task planning, motion-plan selection, execution supervision, and evaluation of a process-level collaborative workflow.",
   "limitations": "Supporting data and selected models/code are available on request; a complete, independently inspectable package of raw streams and event links could not be verified at review time.",
   "hrteCoverage": {
@@ -24,7 +24,7 @@
       "physicalState": "captured",
       "action": "captured",
       "intent": "captured",
-      "internalState": "captured"
+      "internalState": "notReported"
     },
     "robot": {
       "capabilityAndConfiguration": "captured",
@@ -54,9 +54,9 @@
     "robotPlatforms": 1,
     "focalTasks": 1,
     "environmentConfigurations": 1,
-    "sessionsOrTrials": "notReported",
-    "duration": "notReported",
-    "setting": "laboratory mock-up",
+    "sessionsOrTrials": "not reported",
+    "duration": "not reported",
+    "setting": "not reported",
     "origin": "real"
   },
   "instantiation": [
@@ -99,10 +99,10 @@
   },
   "access": {
     "tier": "on-request",
-    "license": "available on request",
+    "license": "not specified",
     "custodian": "Wang et al.",
     "requestProcedure": "Contact the corresponding author.",
     "permittedUses": [ "non-commercial research" ],
-    "retention": "notReported"
+    "retention": "not reported"
   }
 }
