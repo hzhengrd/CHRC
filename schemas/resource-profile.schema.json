@@ -51,7 +51,7 @@
     },
     "scale": {
       "type": "object",
-      "description": "Empirical breadth. Numeric fields accept 'notReported' as a string.",
+      "description": "Empirical breadth. Numeric fields accept 'not reported' as a string.",
       "properties": {
         "participants": { "type": ["integer", "string"] },
         "robotInstances": { "type": ["integer", "string"] },
@@ -60,8 +60,8 @@
         "environmentConfigurations": { "type": ["integer", "string"] },
         "sessionsOrTrials": { "type": ["integer", "string"] },
         "duration": { "type": "string" },
-        "setting": { "type": "string", "enum": ["on-site", "off-site production", "laboratory mock-up", "teleoperation", "immersive environment", "simulation", "notReported"] },
-        "origin": { "type": "string", "enum": ["real", "synthetic", "mixed", "notReported"] }
+        "setting": { "type": "string", "enum": ["on-site", "off-site production", "laboratory mock-up", "teleoperation", "immersive/VR", "simulation", "not reported"] },
+        "origin": { "type": "string", "enum": ["real", "synthetic", "mixed", "not reported"] }
       }
     },
     "instantiation": {
