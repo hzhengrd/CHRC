@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://hzhengrd.github.io/CHRC/schemas/resource-profile.schema.json",
   "title": "CHRC resource profile (minimum)",
-  "description": "Minimum profile for a construction human-robot collaboration (CHRC) data resource, grounded in the H/R/T/E taxonomy. Required blocks: identity, H/R/T/E coverage, scale, and access. Conditional blocks: instantiation and provenance. A value of 'notReported' is an accepted value, so an empty field does not make a resource unregistrable.",
+  "description": "Minimum profile for a construction human-robot collaboration (CHRC) data resource, grounded in the H/R/T/E taxonomy. Required blocks: identity, H/R/T/E coverage, scale, and access. Conditional blocks: instantiation and provenance. A value of 'notReported' is an accepted value, so an empty field does not make a resource unregistrable. The schema is deliberately permissive: partial H/R/T/E coverage is accepted because resources that capture only some categories can still serve CHRC research.",
   "type": "object",
   "required": ["id", "name", "creators", "recordBasis", "hrteCoverage", "scale", "access"],
   "properties": {

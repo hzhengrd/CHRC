@@ -6,6 +6,8 @@
 # Structural minimum for a collaborative-episode graph. The constraints are
 # deliberately lenient so that partial records remain valid; reuse is assessed
 # by the compatibility rules (Supplementary Table S3), not by these shapes.
+# A resource need not record both a human and a robot; human-only or robot-only
+# records that inform CHRC remain valid.
 
 # An episode must carry an identifier, a focal task, and at least one
 # associated participant. The environmental configuration is optional.
