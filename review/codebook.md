@@ -4,7 +4,13 @@
 
 The coding table contains one row per consolidated CHRC data resource. A resource may be documented by more than one publication. In those cases, publication identifiers and citation keys are separated by semicolons, and resource-level fields reflect the union of documented information. The original auditable resource identifiers from the coding workbook are retained.
 
-The coding distinguishes **information coverage** (the 17 H/R/T/E categories) from **data-instantiation properties** (the nine I_ fields). Environmental configuration is a scale field: it counts distinct sites, rooms, workcell layouts, sensor arrangements, or simulation scenes used to instantiate the environment. It is not an additional H/R/T/E category and does not substitute for environment geometry, semantics, or operating conditions.
+The coding distinguishes **information coverage** (the 17 H/R/T/E categories) from **data-instantiation properties** (the nine I_ fields). Environmental configuration is a scale field: it counts distinct sites, rooms, workcell layouts, or simulation scenes used to instantiate the environment. Variation in sensor arrangement alone is collection metadata, not a distinct environmental configuration. Environmental configuration is not an additional H/R/T/E category and does not substitute for environment geometry, semantics, or operating conditions.
+
+## Coding procedure and release status
+
+Each resource was independently coded by four of the five authors against the shared operational definitions and boundary rules in this codebook. The independent coding covered the 17 H/R/T/E categories, the nine data-instantiation properties, resource scale and context, access status, record basis, and cross-referent relations. The four coders then compared their decisions, reviewed the supporting full-text evidence, and resolved disagreements through discussion until consensus. The public table contains only these final consensus decisions.
+
+Computational tools were used to assemble records and to help locate candidate passages in the full texts. They did not determine the released codes. A value was retained only after manual examination of the source evidence by the authors and completion of the consensus procedure. No machine-generated candidate or unaudited relation code remains in this release.
 
 ## Value vocabulary
 
@@ -42,7 +48,7 @@ The coding distinguishes **information coverage** (the 17 H/R/T/E categories) fr
 - `robot_instances`: participating robot instances. A modular robot assembled into one operating system counts as one instance unless multiple robots participate concurrently.
 - `robot_platforms`: distinct platform types identified by model or stable platform description.
 - `focal_tasks`: number of distinct construction work objectives, not the number of conditions or repetitions.
-- `environment_configurations`: distinct sites, rooms, workcell layouts, sensor arrangements, or simulation scenes. A new trial in an unchanged configuration is not a new configuration.
+- `environment_configurations`: distinct sites, rooms, workcell layouts, or simulation scenes. A new trial in an unchanged configuration is not a new configuration. Variation in camera number, camera placement, or another sensor arrangement alone is retained as collection metadata and does not create a new environmental configuration.
 - `sessions_or_trials`: the reported count of sessions, runs, trials, rounds, or episodes. The count is retained without converting among these experimental units.
 - `duration`: reported duration with its original unit. Units are not converted or combined.
 - `access_status`: strongest verified access statement associated with the resource. `open public` means public files were verifiably accessible; it does not by itself establish that every underlying experimental record was released.
@@ -163,10 +169,10 @@ The coding distinguishes **information coverage** (the 17 H/R/T/E categories) fr
 
 ## Cross-referent relations
 
-`cross_referent_relations` lists relations connecting two or more H/R/T/E referents that were identified by the existing evidence-matching pass. Controlled labels used in this release are `communication`, `coordination`, `handover`, `proximity`, `shared attention`, `directed trust`, `collision risk`, and `task authority`. Multiple relations are semicolon-separated. These relation codes remain machine-assisted candidates pending author audit. `notReported` means that the evidence-matching pass did not identify a documented relation; it is not evidence that collaboration lacked relations.
+`cross_referent_relations` lists relations connecting two or more H/R/T/E referents that were established from the full-text evidence and coded through the same independent four-author review and consensus procedure used for the other resource fields. Controlled labels used in this release are `communication`, `handover/contact`, `proximity`, `coordination/synchronization`, `shared attention/awareness`, `directed psychological relation`, `collision/safety`, and `task allocation/authority`. Multiple relations are semicolon-separated. `notReported` means that the reviewed publication did not document a qualifying relation under this protocol; it is not evidence that the collaboration itself lacked relations.
 
 ## Missingness and interpretation
 
-All undocumented values remain missing. No value is estimated or imputed. In particular, `notReported` is a lower bound on what the publication makes visible, not a claim that the underlying resource lacks the information. The finalized workbook contained no category-level cases with sufficiently explicit negative evidence to assign `notCaptured`; the value remains in the public vocabulary for future coding and corrections.
+All undocumented values remain missing. No value is estimated or imputed. In particular, `notReported` is a lower bound on what the publication makes visible, not a claim that the underlying resource lacks the information. In this corpus, the consensus review found no category-level case with sufficiently explicit negative evidence to assign `notCaptured`. This is an outcome of the coding rather than an omitted category; `notCaptured` remains in the controlled vocabulary for future resources and corrections.
 
 One full-text study was excluded because its non-English full text did not permit assessment under the review protocol. Because the public exclusion vocabulary has no language category, this study is represented as `no-eligible-resource`; this is a vocabulary mapping rather than a substantive judgment that the publication contains no resource.
