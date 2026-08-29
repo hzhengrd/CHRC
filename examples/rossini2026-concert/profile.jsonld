@@ -46,13 +46,13 @@
   },
   "crossReferentRelations": [],
   "scale": {
-    "participants": "notReported",
+    "participants": "not reported",
     "robotInstances": 1,
     "robotPlatforms": 1,
     "focalTasks": 4,
     "environmentConfigurations": 1,
-    "sessionsOrTrials": "notReported",
-    "duration": "notReported",
+    "sessionsOrTrials": "not reported",
+    "duration": "not reported",
     "setting": "on-site",
     "origin": "real"
   },
@@ -76,6 +76,6 @@
     "custodian": "Rossini et al.",
     "requestProcedure": "Public repository",
     "permittedUses": [ "research", "reuse under repository license" ],
-    "retention": "notReported"
+    "retention": "not reported"
   }
 }

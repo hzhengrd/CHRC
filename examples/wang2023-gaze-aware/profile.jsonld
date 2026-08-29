@@ -48,13 +48,13 @@
     "communication"
   ],
   "scale": {
-    "participants": "notReported",
-    "robotInstances": "notReported",
-    "robotPlatforms": "notReported",
-    "focalTasks": "notReported",
+    "participants": "not reported",
+    "robotInstances": "not reported",
+    "robotPlatforms": "not reported",
+    "focalTasks": "not reported",
     "environmentConfigurations": 1,
-    "sessionsOrTrials": "notReported",
-    "duration": "notReported",
+    "sessionsOrTrials": "not reported",
+    "duration": "not reported",
     "setting": "laboratory mock-up",
     "origin": "real"
   },
@@ -78,6 +78,6 @@
     "custodian": "Wang et al.",
     "requestProcedure": "Public repository",
     "permittedUses": [ "research", "reuse under repository license" ],
-    "retention": "notReported"
+    "retention": "not reported"
   }
 }

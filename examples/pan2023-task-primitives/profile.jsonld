@@ -46,14 +46,14 @@
   },
   "crossReferentRelations": [],
   "scale": {
-    "participants": "notReported",
+    "participants": "not reported",
     "robotInstances": 0,
     "robotPlatforms": 0,
     "focalTasks": 1,
-    "environmentConfigurations": "notReported",
+    "environmentConfigurations": "not reported",
     "sessionsOrTrials": 7,
     "duration": "approx. 40 min",
-    "setting": "notReported",
+    "setting": "not reported",
     "origin": "real"
   },
   "instantiation": [
@@ -72,6 +72,6 @@
   ],
   "access": {
     "tier": "metadata-only",
-    "license": "notReported"
+    "license": "not reported"
   }
 }
