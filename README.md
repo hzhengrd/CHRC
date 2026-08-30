@@ -1,10 +1,12 @@
-# CHRC Data Infrastructure — Public Assets
+# Construction Human–Robot Collaboration
 
 Public, machine-readable assets accompanying the manuscript:
 
 > **A Data-Centric Perspective on Construction Human–Robot Collaboration: Taxonomy, Landscape, and Infrastructure**
 
-**Live site:** <https://hzhengrd.github.io/CHRC/>
+![The H/R/T/E taxonomy for characterizing CHRC data resources](images/taxonomy.png)
+
+*The H/R/T/E taxonomy at the core of this work: it classifies the Human, Robot, Task, and Environment information a CHRC data resource should represent, together with nine data-instantiation properties.*
 
 ## Contents
 
