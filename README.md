@@ -31,4 +31,4 @@ These files are **reference implementations** accompanying the manuscript. They 
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22125779.svg)](https://doi.org/10.5281/zenodo.22125779)
 
-Cite as: **CHRC Data Infrastructure** (2026). Public assets accompanying the manuscript. Zenodo. DOI: [10.5281/zenodo.22125779](https://doi.org/10.5281/zenodo.22125779).
+Cite as: *TBD (placeholder — final citation to be added once the Zenodo record title is confirmed)* — DOI: [10.5281/zenodo.22125779](https://doi.org/10.5281/zenodo.22125779).
