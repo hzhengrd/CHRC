@@ -1,8 +1,8 @@
-# Construction Human–Robot Collaboration
+# Human–Robot Collaboration in Construction
 
 Public, machine-readable assets accompanying the manuscript:
 
-> **A Data-Centric Perspective on Construction Human–Robot Collaboration: Taxonomy, Landscape, and Infrastructure**
+> **A Data-Centric Perspective on Human–Robot Collaboration in Construction: Taxonomy, Landscape, and Infrastructure**
 
 ![The H/R/T/E taxonomy for characterizing CHRC data resources](images/taxonomy.png)
 
