@@ -10,6 +10,8 @@ The coding distinguishes **information coverage** (the 17 H/R/T/E categories) fr
 
 Each resource was independently coded by four of the five authors against the shared operational definitions and boundary rules in this codebook. The independent coding covered the 17 H/R/T/E categories, the nine data-instantiation properties, resource scale and context, access status, record basis, and cross-referent relations. The four coders then compared their decisions, reviewed the supporting full-text evidence, and resolved disagreements through discussion until consensus. The public table contains only these final consensus decisions.
 
+Inter-coder agreement was high: Fleiss' κ = 0.79 for the 17 information categories (90.1% pairwise agreement) and κ = 0.94 for the nine data-instantiation properties (97.6% pairwise agreement). The residual disagreements concentrated in the intent-versus-action and specification-versus-execution distinctions, which the illustrative edge cases below document. The four independent coder-level coding files are published alongside this codebook as `independent-coding-coder1.csv` through `independent-coding-coder4.csv`.
+
 Computational tools were used to assemble records and to help locate candidate passages in the full texts. They did not determine the released codes. A value was retained only after manual examination of the source evidence by the authors and completion of the consensus procedure. No machine-generated candidate or unaudited relation code remains in this release.
 
 ## Value vocabulary
@@ -166,6 +168,45 @@ Computational tools were used to assemble records and to help locate candidate p
 ### I_temporalReference
 
 **Operational definition:** temporal indexing scheme, including timestamp, frame index, control cycle, start-end interval, event time, operation period, episode boundary, shift, schedule activity, or project phase. **Boundary cases:** total duration alone does not establish how records are temporally indexed or synchronized.
+
+## Illustrative edge cases
+
+The boundary cases above state the rule; the worked examples below show how the rule is applied when two categories compete for the same evidence. In every case, the code records what the publication documents, not what the underlying data might contain.
+
+### H_intent vs H_action
+
+- **Scenario.** A publication shows a worker reaching toward a wall panel and states that the worker intends to install it.
+- **Resolution.** The reaching is observed behavior and is coded `captured` under `H_action`; the stated intention is a forward-looking state and is coded `captured` under `H_intent`. If the publication shows the reaching but never reports a goal or plan, `H_intent` is `notReported`.
+
+### T_workObjectState vs E_geometricStructure / E_semanticContent
+
+- **Scenario.** A robot drills into a panel held by a worker, while the surrounding room walls only constrain the workspace.
+- **Resolution.** The panel is a focal work-object and is coded `captured` under `T_workObjectState`. The walls are environment, coded under `E_geometricStructure` only if their geometry is represented; a named room without represented geometry is `notReported`.
+
+### H_physicalState vs H_action
+
+- **Scenario.** A publication reports a worker's joint angles and posture during a lift.
+- **Resolution.** Joint angles and posture are bodily state and are coded `captured` under `H_physicalState`; the lift itself is a meaningful activity and is coded `captured` under `H_action`. A semantic label such as "lifting" without recorded posture or kinematics supports `H_action` but not `H_physicalState`.
+
+### R_action vs R_intent vs R_physicalState
+
+- **Scenario.** A controller outputs a trajectory that has not yet been executed; elsewhere the paper plots the executed motion.
+- **Resolution.** The planned trajectory is `captured` under `R_intent`. The executed motion is `captured` under `R_action` and, if its pose or velocity is recorded, also under `R_physicalState`.
+
+### H_internalState vs H_physicalState
+
+- **Scenario.** An eye-tracker records gaze, and the paper interprets dwell time as attention on the robot.
+- **Resolution.** Raw gaze is `captured` under `H_physicalState`; gaze interpreted as attention is `captured` under `H_internalState`. Both are coded when the publication documents both the signal and its interpretation.
+
+### E_operatingConditions vs E_geometricStructure
+
+- **Scenario.** A paper reports the site's dust level and lighting alongside the room layout.
+- **Resolution.** Dust and lighting are variable conditions and are coded `captured` under `E_operatingConditions`; the layout is fixed spatial form and is coded `captured` under `E_geometricStructure`.
+
+### T_specification vs T_execution
+
+- **Scenario.** A paper states the target tolerance and the measured deviation of the finished assembly.
+- **Resolution.** The tolerance is `captured` under `T_specification`; the measured deviation is `captured` under `T_execution`. A target value alone does not establish `T_execution`, and an outcome alone does not establish `T_specification`.
 
 ## Cross-referent relations
 
